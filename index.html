@@ -1,1 +1,287 @@
-<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Valentine's Day Special</title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            background-color: #ffcccb;\n            text-align: center;\n            padding: 20px;\n        }\n        #hearts {\n            position: relative;\n            height: 100px;\n        }\n        .heart {\n            position: absolute;\n            width: 20px;\n            height: 20px;\n            background-color: red;\n            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);\n            animation: float 5s infinite;\n        }\n        @keyframes float {\n            0% { transform: translateY(0); }\n            50% { transform: translateY(-20px); }\n            100% { transform: translateY(0); }\n        }\n        .gallery img {\n            width: 100px;\n            margin: 5px;\n        }\n    </style>\n</head>\n<body>\n    <h1>Happy Valentine's Day!</h1>\n    <h2>Love Letter in Marathi</h2>\n    <p>माझ्या प्रियकरा,\n        <br>तू माझ्या जीवनात आलेस आणि सर्व काही बदलले.\n        <br>तुझ्याशिवाय मी पूर्ण नाही.\n        <br>तुझ्यावर खूप प्रेम करते!\n    </p>\n    <div id="hearts">\n        <!-- Floating hearts animation -->\n        <div class="heart" style="left: 10%; animation-delay: 1s;"></div>\n        <div class="heart" style="left: 30%; animation-delay: 2s;"></div>\n        <div class="heart" style="left: 50%; animation-delay: 3s;"></div>\n        <div class="heart" style="left: 70%; animation-delay: 4s;"></div>\n    </div>\n    <h2>Interactive Teddy Bear</h2>\n    <img src="https://example.com/teddy-bear.png" alt="Teddy Bear" onclick="alert('Hug me!');" style="cursor:pointer; width: 200px;">\n    <h2>Photo Gallery</h2>\n    <div class="gallery">\n        <img src="https://example.com/photo1.jpg" alt="Photo 1">\n        <img src="https://example.com/photo2.jpg" alt="Photo 2">\n        <img src="https://example.com/photo3.jpg" alt="Photo 3">\n    </div>\n    <h2>Countdown Timer</h2>\n    <div id="timer"></div>\n    <script>\n        const countDownDate = new Date('2026-02-14T00:00:00Z').getTime();\n        const x = setInterval(() => {\n            const now = new Date().getTime();\n            const distance = countDownDate - now;\n            const days = Math.floor(distance / (1000 * 60 * 60 * 24));\n            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));\n            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));\n            const seconds = Math.floor((distance % (1000 * 60)) / 1000);\n            document.getElementById('timer').innerHTML = `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;\n            if (distance < 0) {\n                clearInterval(x);\n                document.getElementById('timer').innerHTML = 'EXPIRED';\n            }\n        }, 1000);\n    </script>\n    <h2>Music Player</h2>\n    <audio controls>\n        <source src="https://example.com/love-song.mp3" type="audio/mpeg">\n        Your browser does not support the audio element.\n    </audio>\n</body>\n</html>\n
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>श्रेयू माझी व्हॅलेंटाईन 💕</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&family=Poppins:wght@400;600&display=swap');
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Noto Sans Devanagari', sans-serif;
+background: linear-gradient(135deg, #ffe6f0, #fff0f5, #f8e1e9);
+color: #333;
+min-height: 100vh;
+overflow-x: hidden;
+text-align: center;
+padding: 20px;
+}
+
+h1 {
+font-size: 3.2rem;
+color: #e91e63;
+margin: 30px 0 10px;
+font-weight: 700;
+text-shadow: 2px 2px 8px rgba(233,30,99,0.3);
+font-family: 'Poppins', sans-serif;
+}
+
+.subtitle {
+font-size: 1.4rem;
+color: #c2185b;
+margin-bottom: 40px;
+}
+
+.heart-container {
+position: relative;
+margin: 50px auto;
+width: 220px;
+height: 220px;
+cursor: pointer;
+}
+
+.teddy {
+font-size: 140px;
+transition: all 0.4s ease;
+filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+}
+
+.teddy:hover {
+transform: scale(1.18) rotate(5deg);
+}
+
+.message-box {
+background: white;
+border-radius: 20px;
+padding: 30px;
+max-width: 520px;
+margin: 40px auto;
+box-shadow: 0 10px 30px rgba(233,30,99,0.15);
+border: 2px dashed #ff80ab;
+opacity: 0;
+transform: translateY(30px);
+transition: all 0.8s ease;
+}
+
+.message-box.show {
+opacity: 1;
+transform: translateY(0);
+}
+
+.msg-title {
+font-size: 2rem;
+color: #d81b60;
+margin-bottom: 20px;
+}
+
+.msg-text {
+font-size: 1.3rem;
+line-height: 1.7;
+color: #424242;
+}
+
+.highlight {
+color: #e91e63;
+font-weight: bold;
+}
+
+button {
+background: #ff4081;
+color: white;
+border: none;
+padding: 16px 40px;
+font-size: 1.3rem;
+border-radius: 50px;
+cursor: pointer;
+margin: 30px;
+box-shadow: 0 8px 20px rgba(255,64,129,0.4);
+transition: all 0.3s;
+}
+
+button:hover {
+background: #f50057;
+transform: translateY(-4px);
+box-shadow: 0 12px 30px rgba(245,0,87,0.5);
+}
+
+.floating-heart {
+position: absolute;
+font-size: 28px;
+color: #ff4081;
+pointer-events: none;
+animation: float 6s infinite ease-in-out;
+opacity: 0;
+}
+
+@keyframes float {
+0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+20% { opacity: 0.9; }
+100% { transform: translateY(-180px) rotate(360deg); opacity: 0; }
+}
+
+.gallery {
+max-width: 600px;
+margin: 40px auto;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+gap: 15px;
+}
+
+.gallery img {
+width: 100%;
+border-radius: 10px;
+box-shadow: 0 5px 15px rgba(233,30,99,0.2);
+transition: transform 0.3s;
+}
+
+.gallery img:hover {
+transform: scale(1.05);
+}
+
+.timer {
+font-size: 1.5rem;
+color: #e91e63;
+margin: 30px 0;
+font-weight: bold;
+}
+
+.music-player {
+margin: 30px auto;
+max-width: 400px;
+}
+
+@media (max-width: 600px) {
+h1 { font-size: 2.6rem; }
+.teddy { font-size: 110px; }
+.heart-container { width: 180px; height: 180px; }
+}
+</style>
+</head>
+<body>
+
+<h1>श्रेयू माझी व्हॅलेंटाईन! 💖</h1>
+<p class="subtitle">दूर राहूनही तू माझ्या हृदयात सर्वात जवळ आहेस... 🥰</p>
+
+<div class="heart-container" onclick="explodeHearts()">
+<div class="teddy">🧸</div>
+</div>
+
+<p style="font-size:1.2rem; color:#880e4f; margin:20px 0;">
+टेडीला klik कर → मला हग करायचंय! 🤗
+</p>
+
+<button onclick="showLoveMessage()">मला तुझ्यावर किती प्रेम आहे ते बघ 💕</button>
+
+<div class="message-box" id="loveMsg">
+<div class="msg-title">माझ्या श्रेयूला... 🌸</div>
+<p class="msg-text">
+तुझ्याशिवाय हे आयुष्य अपूर्ण वाटतं...<br>
+तुझ्या हसण्याने माझा दिवस उजळतो,<br>
+तुझ्या आवाजाने माझं मन शांत होतं.<br><br>
+
+<span class="highlight">दूर असलो तरी</span> प्रत्येक क्षण तुझ्याबरोबरच जणू अनुभवतो.<br>
+तुझी आठवण येते तेव्हा हृदयात फुलं उमलतात,<br>
+आणि मी फक्त तुझंच नाव घेतो... <span class="highlight">श्रेयू, श्रेयू, श्रेयू!</span> ❤️<br><br>
+
+व्हॅलेंटाईन डे मुळे नाही,<br>
+प्रत्येक दिवस तुझ्यासाठीच आहे.<br>
+लवकरात लवकर भेटू आणि खूप घट्ट हग करू!<br><br>
+
+<strong>मी तुझ्यावर खूप खूप प्रेम करतो, माझी बेबी! 💞</strong>
+</p>
+</div>
+
+<div style="margin-top: 60px;">
+<h2 style="color: #e91e63; font-size: 2rem;">🎵 आमच्या प्रेमाचा संगीत 🎵</h2>
+<div class="music-player">
+<audio controls style="width: 100%; height: 50px;">
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+</div>
+</div>
+
+<div style="margin-top: 60px;">
+<h2 style="color: #e91e63; font-size: 2rem;">💫 आमच्या यादींचा गॅलेरी 💫</h2>
+<div class="gallery">
+<img src="https://via.placeholder.com/150?text=Memory+1" alt="Sweet Memory">
+<img src="https://via.placeholder.com/150?text=Memory+2" alt="Happy Moment">
+<img src="https://via.placeholder.com/150?text=Memory+3" alt="Together">
+<img src="https://via.placeholder.com/150?text=Memory+4" alt="Smiling">
+<img src="https://via.placeholder.com/150?text=Memory+5" alt="Precious">
+<img src="https://via.placeholder.com/150?text=Memory+6" alt="Forever">
+</div>
+<p style="color: #c2185b; margin-top: 20px; font-size: 1.1rem;">
+(तुमच्या वास्तविक फोटो सह बदलण्यासाठी placeholder URLs ला तुमचे फोटो URLs सह बदला)
+</p>
+</div>
+
+<div style="margin-top: 60px;">
+<h2 style="color: #e91e63; font-size: 2rem;">⏰ अगली भेटीचा काउंटडाउन ⏰</h2>
+<div class="timer" id="countdown"></div>
+</div>
+
+<footer style="margin-top: 80px; padding: 30px; color: #c2185b; font-size: 1.2rem;">
+<p>❤️ तुझ्यावर खूप प्रेम करतो, श्रेयू! ❤️</p>
+<p style="font-size: 1rem; margin-top: 20px; color: #999;">
+Made with 💕 on 2026-02-13
+</p>
+</footer>
+
+<script>
+function explodeHearts() {
+for(let i = 0; i < 18; i++) {
+let heart = document.createElement('div');
+heart.className = 'floating-heart';
+heart.innerHTML = ['💗','💖','💕','❤️','🫶','✨'][Math.floor(Math.random()*6)];
+heart.style.left = Math.random() * 100 + '%';
+heart.style.top = '60%';
+heart.style.animationDelay = Math.random() * 2 + 's';
+document.body.appendChild(heart);
+
+setTimeout(() => heart.remove(), 7000);
+}
+}
+
+function showLoveMessage() {
+document.getElementById('loveMsg').classList.add('show');
+explodeHearts();
+setTimeout(() => {
+document.getElementById('loveMsg').scrollIntoView({behavior: 'smooth'});
+}, 300);
+}
+
+function updateCountdown() {
+const targetDate = new Date('2026-02-14T00:00:00').getTime();
+const now = new Date().getTime();
+const distance = targetDate - now;
+
+if (distance > 0) {
+const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+document.getElementById('countdown').innerHTML = `${days} दिवस ${hours} तास ${minutes} मिनिटे ${seconds} सेकंद`;
+} else {
+document.getElementById('countdown').innerHTML = '💕 व्हॅलेंटाईन डे आहे! 💕';
+}
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// Auto-play hearts on page load
+window.addEventListener('load', () => {
+setTimeout(explodeHearts, 1000);
+});
+</script>
+
+</body>
+</html>
